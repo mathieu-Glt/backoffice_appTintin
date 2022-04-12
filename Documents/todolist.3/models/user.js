@@ -1,6 +1,5 @@
 'use strict';
 //import Sequelize from 'sequelize';
-const bcrypt = require ('bcrypt');
 const {
   Model
 } = require('sequelize');
