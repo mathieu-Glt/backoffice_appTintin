@@ -6,7 +6,7 @@ module.exports = (_db) => {
 
 class AuthorModel {
 
-    // récupération de tous les caractéristiques de l'auteur Herge
+    // récupération de tous les datas de l'auteur Herge
     static getAllHerge() {
         return db.query('SELECT * FROM Herges')
             .then((response) => {

@@ -1,3 +1,4 @@
+// information de connexion vers la base de deonnées
 module.exports = {
 	db: {
 		host: "db.3wa.io",

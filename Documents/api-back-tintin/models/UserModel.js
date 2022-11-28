@@ -32,7 +32,7 @@ class UserModel {
 
     }
 
-    // récupération d'un utilisateur par son id
+    // récupération d'un utilisateur par son email
     static getUserByMail(email) {
         return db.query('SELECT * FROM Users WHERE email = ?', [email])
             .then((response) => {
@@ -46,8 +46,19 @@ class UserModel {
 
     // suavegarde d'un utilisateur
     static async saveOneUser(req) {
-        let hash = await bcrypt.hash(req.body.hashPassword, saltRounds);
+        let hash = await bcrypt.hash(req.body.password, saltRounds);
         return db.query('INSERT INTO Users (firstName, lastName, email, hashPassword, role, creation_times_tamp) VALUES(?,?,?,?,"user", NOW())', [req.body.firstName, req.body.lastName, req.body.email, hash])
+            .then((response) => {
+                return response;
+            })
+            .catch((err) => {
+                return err;
+            })
+    }
+    // SELECT `role` FROM Users WHERE `id` = 97
+    // recupération role user table
+    static getRoleUser(userId) {
+        return db.query('SELECT role FROM Users WHERE id = ?', [userId])
             .then((response) => {
                 return response;
             })
@@ -56,8 +67,5 @@ class UserModel {
             })
 
     }
-
-
-
 
 }
